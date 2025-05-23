@@ -260,99 +260,6 @@
       border-radius: 50%;
     }
     
-    .screenshot-container {
-      position: relative;
-      margin: 30px 0 50px;
-      text-align: center;
-    }
-    
-    .screenshot {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      transition: var(--transition);
-      border: 1px solid rgba(0, 255, 136, 0.2);
-    }
-    
-    .screenshot:hover {
-      transform: scale(1.02);
-      box-shadow: 0 25px 50px rgba(0, 255, 136, 0.2);
-    }
-    
-    .features-section {
-      padding: 20px 0 60px;
-    }
-    
-    .section-title {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    
-    .section-title h3 {
-      font-size: 32px;
-      margin-bottom: 15px;
-      color: white;
-    }
-    
-    .section-title p {
-      color: #a0a0a0;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    
-    .feature {
-      background: var(--card-bg);
-      border-radius: var(--border-radius);
-      padding: 40px 30px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      transition: var(--transition);
-      border: 1px solid rgba(0, 255, 136, 0.1);
-    }
-    
-    .feature:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 255, 136, 0.2);
-      border-color: rgba(0, 255, 136, 0.3);
-    }
-    
-    .feature-icon {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      width: 70px;
-      height: 70px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 25px;
-      color: black;
-      font-size: 26px;
-      transform: rotate(5deg);
-      transition: var(--transition);
-    }
-    
-    .feature:hover .feature-icon {
-      transform: rotate(0deg) scale(1.05);
-    }
-    
-    .feature h3 {
-      margin-bottom: 15px;
-      font-size: 20px;
-      color: white;
-    }
-    
-    .feature p {
-      color: #a0a0a0;
-      line-height: 1.7;
-    }
-    
     .ticker-demo {
       background: var(--card-bg);
       border-radius: var(--border-radius);
@@ -360,6 +267,55 @@
       margin: 40px 0;
       border: 1px solid rgba(0, 255, 136, 0.2);
       font-family: 'Consolas', 'Courier New', monospace;
+      position: relative;
+    }
+    
+    .demo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .demo-title {
+      color: var(--primary);
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #888;
+    }
+    
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 2px solid #444;
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
     
     .ticker-item {
@@ -371,20 +327,35 @@
       background: rgba(0, 0, 0, 0.3);
       border-radius: 8px;
       border-left: 3px solid var(--primary);
+      transition: var(--transition);
+    }
+    
+    .ticker-item:hover {
+      background: rgba(0, 0, 0, 0.5);
+      transform: translateX(5px);
     }
     
     .ticker-symbol {
       font-weight: bold;
       color: white;
+      font-size: 16px;
+    }
+    
+    .ticker-name {
+      color: #888;
+      margin-left: 10px;
+      font-size: 12px;
     }
     
     .ticker-price {
       color: white;
       font-size: 18px;
+      font-weight: bold;
     }
     
     .ticker-change {
       font-weight: bold;
+      font-size: 14px;
     }
     
     .positive {
@@ -395,222 +366,32 @@
       color: var(--red);
     }
     
-    .requirements {
-      margin: 40px 0;
-      padding: 30px;
-      background: rgba(67, 97, 238, 0.1);
-      border-radius: var(--border-radius);
-      border: 1px solid rgba(67, 97, 238, 0.2);
-    }
-    
-    .requirements h3 {
-      margin-bottom: 20px;
-      font-size: 22px;
-      color: var(--accent);
-    }
-    
-    .requirements-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      list-style-type: none;
-    }
-    
-    .requirements-list li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      color: #a0a0a0;
-    }
-    
-    .requirements-list li i {
-      color: var(--primary);
-      margin-right: 10px;
-      font-size: 18px;
-    }
-    
-    .code-preview {
-      background: #1a1a1a;
-      border-radius: var(--border-radius);
-      padding: 20px;
-      overflow: hidden;
-      text-align: left;
-      font-family: 'Fira Code', 'Courier New', monospace;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #e0e0e0;
-      max-height: 300px;
-      position: relative;
-      margin: 40px 0;
-      border: 1px solid rgba(0, 255, 136, 0.2);
-    }
-    
-    .code-preview pre {
-      margin: 0;
-      overflow: auto;
-      max-height: 260px;
-    }
-    
-    .code-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #333;
-    }
-    
-    .code-dots {
-      display: flex;
-      gap: 6px;
-      margin-right: 15px;
-    }
-    
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-    
-    .dot-red {
-      background: #ff5f56;
-    }
-    
-    .dot-yellow {
-      background: #ffbd2e;
-    }
-    
-    .dot-green {
-      background: #27c93f;
-    }
-    
-    .code-title {
-      font-size: 13px;
+    .neutral {
       color: #888;
     }
     
-    .code-fade {
+    .error {
+      color: var(--yellow);
+      font-style: italic;
+    }
+    
+    .last-updated {
+      text-align: center;
+      color: #666;
+      font-size: 11px;
+      margin-top: 15px;
+      font-style: italic;
+    }
+    
+    .api-status {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 40px;
-      background: linear-gradient(transparent, #1a1a1a);
-      pointer-events: none;
-    }
-    
-    .cta-section {
-      text-align: center;
-      margin: 80px 0 40px;
-    }
-    
-    .cta-section h3 {
-      font-size: 32px;
-      margin-bottom: 20px;
-      color: white;
-    }
-    
-    .cta-section p {
-      margin-bottom: 30px;
-      color: #a0a0a0;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    footer {
-      background: linear-gradient(135deg, #1a1d29, #2d3748);
-      color: white;
-      padding: 60px 0 30px;
-      position: relative;
-      border-top: 1px solid rgba(0, 255, 136, 0.1);
-    }
-    
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-    
-    .footer-column h4 {
-      margin-bottom: 20px;
-      font-size: 18px;
-      color: var(--primary);
-    }
-    
-    .footer-links {
-      list-style: none;
-    }
-    
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-    
-    .footer-links a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      transition: var(--transition);
-      font-size: 15px;
-    }
-    
-    .footer-links a:hover {
-      color: var(--primary);
-      padding-left: 5px;
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 15px;
-    }
-    
-    .social-links a {
-      color: white;
-      background: rgba(0, 255, 136, 0.1);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-    
-    .social-links a:hover {
-      background: var(--primary);
-      color: black;
-      transform: translateY(-3px);
-    }
-    
-    .footer-bottom {
-      text-align: center;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .copyright {
-      font-size: 14px;
-      opacity: 0.7;
+      top: 10px;
+      right: 15px;
+      font-size: 10px;
+      color: #666;
     }
     
     /* Media Queries */
-    @media (max-width: 1024px) {
-      .container {
-        padding: 0 30px;
-      }
-      
-      header {
-        padding: 80px 0 200px;
-      }
-      
-      h1 {
-        font-size: 42px;
-      }
-      
-      .card {
-        padding: 40px 30px;
-      }
-    }
-    
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -620,123 +401,20 @@
         display: block;
       }
       
-      header {
-        padding: 60px 0 180px;
-      }
-      
-      .hero {
-        margin-top: 40px;
-      }
-      
-      h1 {
-        font-size: 36px;
-      }
-      
-      h2 {
-        font-size: 18px;
-        padding: 0 15px;
-      }
-      
-      .main {
-        margin-top: -120px;
-      }
-      
-      .card {
-        padding: 30px 25px;
-        margin-bottom: 40px;
-        border-radius: 10px;
-      }
-      
-      .buttons {
-        flex-direction: column;
-        gap: 15px;
-        max-width: 280px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      
-      .btn {
-        width: 100%;
-        padding: 14px 24px;
-      }
-      
-      .features {
-        grid-template-columns: 1fr;
-      }
-      
       .ticker-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
       }
-    }
-    
-    @media (max-width: 480px) {
-      .container {
-        padding: 0 20px;
+      
+      .ticker-info {
+        width: 100%;
       }
       
-      header {
-        padding: 50px 0 160px;
+      .ticker-data {
+        width: 100%;
+        text-align: left;
       }
-      
-      .logo {
-        font-size: 22px;
-      }
-      
-      h1 {
-        font-size: 28px;
-        padding: 0 5px;
-      }
-      
-      h2 {
-        font-size: 16px;
-        margin-bottom: 30px;
-      }
-      
-      .main {
-        margin-top: -100px;
-      }
-      
-      .card {
-        padding: 25px 15px;
-        border-radius: 8px;
-      }
-      
-      .feature {
-        padding: 30px 20px;
-      }
-      
-      .feature-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 22px;
-      }
-    }
-    
-    /* Animations */
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-    
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .animate-slide-up {
-      animation: slideUp 0.8s ease-out;
     }
   </style>
 </head>
@@ -766,14 +444,10 @@
   <main class="main">
     <div class="container">
       <div class="card download-section" id="download">
-        <div class="screenshot-container">
-          <img src="https://via.placeholder.com/800x500/1e2328/00ff88?text=Stock+Ticker+Pro+Dashboard" alt="Stock Ticker Pro Screenshot" class="screenshot">
-        </div>
-        
-        <p class="description">
+        <div class="description">
           Stock Ticker Pro is a professional desktop application that provides real-time financial data tracking with an always-on-top overlay. 
           Built with PyQt5 and powered by Yahoo Finance API, it supports stocks, cryptocurrencies, forex pairs, commodities, and ETFs with clean mode for distraction-free monitoring.
-        </p>
+        </div>
         
         <div class="buttons">
           <a href="#" class="btn btn-primary">
@@ -794,136 +468,392 @@
         
         <!-- Live Ticker Demo -->
         <div class="ticker-demo" id="demo">
-          <h3 style="margin-bottom: 20px; color: var(--primary); text-align: center;">📊 Live Demo</h3>
-          <div class="ticker-item">
-            <div>
-              <span class="ticker-symbol">AAPL</span>
-              <span style="color: #888; margin-left: 10px;">Apple Inc.</span>
-            </div>
-            <div style="text-align: right;">
-              <div class="ticker-price">$185.42</div>
-              <div class="ticker-change positive">▲ +2.15 (+1.17%)</div>
+          <div class="api-status" id="apiStatus">Loading...</div>
+          <div class="demo-header">
+            <h3 class="demo-title">📊 Live Market Data</h3>
+            <div class="live-indicator">
+              <span class="live-dot"></span>
+              <span>LIVE</span>
+              <span class="loading-spinner" id="loadingSpinner" style="display: none;"></span>
             </div>
           </div>
-          <div class="ticker-item">
-            <div>
-              <span class="ticker-symbol">BTC-USD</span>
-              <span style="color: #888; margin-left: 10px;">Bitcoin</span>
+          
+          <div id="tickerContainer">
+            <!-- Tickers will be dynamically populated here -->
+            <div class="ticker-item">
+              <div class="ticker-info">
+                <span class="ticker-symbol">AAPL</span>
+                <span class="ticker-name">Apple Inc.</span>
+              </div>
+              <div class="ticker-data">
+                <div class="ticker-price">Loading...</div>
+                <div class="ticker-change neutral">Fetching data...</div>
+              </div>
             </div>
-            <div style="text-align: right;">
-              <div class="ticker-price">$67,234.50</div>
-              <div class="ticker-change positive">▲ +1,455.20 (+2.21%)</div>
-            </div>
-          </div>
-          <div class="ticker-item">
-            <div>
-              <span class="ticker-symbol">GOOGL</span>
-              <span style="color: #888; margin-left: 10px;">Alphabet Inc.</span>
-            </div>
-            <div style="text-align: right;">
-              <div class="ticker-price">$142.78</div>
-              <div class="ticker-change negative">▼ -0.85 (-0.59%)</div>
-            </div>
-          </div>
-          <div class="ticker-item">
-            <div>
-              <span class="ticker-symbol">EURUSD=X</span>
-              <span style="color: #888; margin-left: 10px;">EUR/USD</span>
-            </div>
-            <div style="text-align: right;">
-              <div class="ticker-price">1.0845</div>
-              <div class="ticker-change positive">▲ +0.0023 (+0.21%)</div>
-            </div>
-          </div>
-          <div class="ticker-item">
-            <div>
-              <span class="ticker-symbol">GC=F</span>
-              <span style="color: #888; margin-left: 10px;">Gold Futures</span>
-            </div>
-            <div style="text-align: right;">
-              <div class="ticker-price">$2,165.40</div>
-              <div class="ticker-change positive">▲ +12.30 (+0.57%)</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="code-preview">
-          <div class="code-header">
-            <div class="code-dots">
-              <div class="dot dot-red"></div>
-              <div class="dot dot-yellow"></div>
-              <div class="dot dot-green"></div>
-            </div>
-            <div class="code-title">stock_ticker_pro.py</div>
-          </div>
-          <pre>from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
-from PyQt5.QtCore import Qt, QTimer, QThread, pyqtSignal
-import yfinance as yf
-
-class ProfessionalStockTicker(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.settings = AppSettings()
-        self.tickers = ["BTC-USD", "ETH-USD", "AAPL", "GOOGL", "NVDA"]
-        self.setup_ui()
-        self.setup_shortcuts()  # Ctrl+X for clean mode
-        
-    def toggle_clean_mode(self):
-        """Toggle between clean and full view"""
-        self.clean_mode = not self.clean_mode
-        if self.clean_mode:
-            self.header.setVisible(False)
-            self.control_panel.setVisible(False)
-            # Show only ticker data for distraction-free monitoring
             
-    def fetch_data(self):
-        """Fetch real-time data using Yahoo Finance API"""
-        self.data_fetcher = DataFetcher(self.tickers)
-        self.data_fetcher.data_ready.connect(self.update_displays)
-        # More implementation...</pre>
-          <div class="code-fade"></div>
-        </div>
-        
-        <div class="requirements" id="requirements">
-          <h3>System Requirements</h3>
-          <ul class="requirements-list">
-            <li><i class="fas fa-check-circle"></i> Windows 10 or later (64-bit)</li>
-            <li><i class="fas fa-check-circle"></i> 2GB RAM minimum (4GB recommended)</li>
-            <li><i class="fas fa-check-circle"></i> 150MB free disk space</li>
-            <li><i class="fas fa-check-circle"></i> Internet connection for real-time data</li>
-            <li><i class="fas fa-check-circle"></i> No additional software required</li>
-            <li><i class="fas fa-check-circle"></i> Standalone executable - ready to run</li>
-          </ul>
+            <div class="ticker-item">
+              <div class="ticker-info">
+                <span class="ticker-symbol">GOOGL</span>
+                <span class="ticker-name">Alphabet Inc.</span>
+              </div>
+              <div class="ticker-data">
+                <div class="ticker-price">Loading...</div>
+                <div class="ticker-change neutral">Fetching data...</div>
+              </div>
+            </div>
+            
+            <div class="ticker-item">
+              <div class="ticker-info">
+                <span class="ticker-symbol">MSFT</span>
+                <span class="ticker-name">Microsoft Corporation</span>
+              </div>
+              <div class="ticker-data">
+                <div class="ticker-price">Loading...</div>
+                <div class="ticker-change neutral">Fetching data...</div>
+              </div>
+            </div>
+            
+            <div class="ticker-item">
+              <div class="ticker-info">
+                <span class="ticker-symbol">TSLA</span>
+                <span class="ticker-name">Tesla Inc.</span>
+              </div>
+              <div class="ticker-data">
+                <div class="ticker-price">Loading...</div>
+                <div class="ticker-change neutral">Fetching data...</div>
+              </div>
+            </div>
+            
+            <div class="ticker-item">
+              <div class="ticker-info">
+                <span class="ticker-symbol">NVDA</span>
+                <span class="ticker-name">NVIDIA Corporation</span>
+              </div>
+              <div class="ticker-data">
+                <div class="ticker-price">Loading...</div>
+                <div class="ticker-change neutral">Fetching data...</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="last-updated" id="lastUpdated">
+            Connecting to live data feed...
+          </div>
         </div>
       </div>
-      
-      <section class="features-section" id="features">
-        <div class="section-title">
-          <h3>Professional Trading Features</h3>
-          <p>Everything you need for comprehensive market monitoring in a clean, efficient desktop application</p>
-        </div>
+    </div>
+  </main>
+  
+  <script>
+    // Configuration
+    const API_CONFIG = {
+      // Free tier APIs (you'll need to sign up for API keys)
+      finnhub: {
+        baseUrl: 'https://finnhub.io/api/v1/quote',
+        apiKey: 'your_finnhub_api_key_here' // Free tier: 60 calls/minute
+      },
+      polygon: {
+        baseUrl: 'https://api.polygon.io/v2/aggs/ticker',
+        apiKey: 'your_polygon_api_key_here' // Free tier: 5 calls/minute
+      },
+      // Backup: Yahoo Finance proxy (no API key needed but less reliable)
+      yahooProxy: {
+        baseUrl: 'https://query1.finance.yahoo.com/v8/finance/chart'
+      }
+    };
+    
+    // Tickers to display
+    const TICKERS = [
+      { symbol: 'AAPL', name: 'Apple Inc.' },
+      { symbol: 'GOOGL', name: 'Alphabet Inc.' },
+      { symbol: 'MSFT', name: 'Microsoft Corporation' },
+      { symbol: 'TSLA', name: 'Tesla Inc.' },
+      { symbol: 'NVDA', name: 'NVIDIA Corporation' }
+    ];
+    
+    // Global state
+    let updateInterval;
+    let lastUpdateTime = null;
+    
+    // Utility functions
+    function formatPrice(price) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(price);
+    }
+    
+    function formatChange(change, changePercent) {
+      const arrow = change >= 0 ? '▲' : '▼';
+      const sign = change >= 0 ? '+' : '';
+      return `${arrow} ${sign}${change.toFixed(2)} (${sign}${changePercent.toFixed(2)}%)`;
+    }
+    
+    function getChangeClass(change) {
+      if (change > 0) return 'positive';
+      if (change < 0) return 'negative';
+      return 'neutral';
+    }
+    
+    function updateLastUpdatedTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('en-US', {
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      document.getElementById('lastUpdated').textContent = `Last updated: ${timeString}`;
+      lastUpdateTime = now;
+    }
+    
+    function showLoading(show = true) {
+      const spinner = document.getElementById('loadingSpinner');
+      if (spinner) {
+        spinner.style.display = show ? 'inline-block' : 'none';
+      }
+    }
+    
+    function updateApiStatus(status) {
+      const statusElement = document.getElementById('apiStatus');
+      if (statusElement) {
+        statusElement.textContent = status;
+      }
+    }
+    
+    // API functions
+    async function fetchWithYahooProxy(symbol) {
+      try {
+        const response = await fetch(`${API_CONFIG.yahooProxy.baseUrl}/${symbol}`, {
+          method: 'GET',
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+          }
+        });
         
-        <div class="features">
-          <div class="feature">
-            <div class="feature-icon">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <h3>Real-Time Market Data</h3>
-            <p>Live prices for stocks, cryptocurrencies, forex pairs, commodities, and ETFs using Yahoo Finance API with automatic updates every 5-300 seconds.</p>
-          </div>
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        
+        const data = await response.json();
+        const result = data.chart.result[0];
+        const quote = result.meta;
+        const prices = result.indicators.quote[0];
+        
+        const currentPrice = quote.regularMarketPrice;
+        const previousClose = quote.previousClose;
+        const change = currentPrice - previousClose;
+        const changePercent = (change / previousClose) * 100;
+        
+        return {
+          symbol,
+          price: currentPrice,
+          change: change,
+          changePercent: changePercent,
+          timestamp: Date.now()
+        };
+      } catch (error) {
+        console.error(`Yahoo API error for ${symbol}:`, error);
+        throw error;
+      }
+    }
+    
+    async function fetchWithFinnhub(symbol) {
+      try {
+        const response = await fetch(
+          `${API_CONFIG.finnhub.baseUrl}?symbol=${symbol}&token=${API_CONFIG.finnhub.apiKey}`
+        );
+        
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        
+        const data = await response.json();
+        
+        const currentPrice = data.c; // current price
+        const change = data.d; // change
+        const changePercent = data.dp; // change percent
+        
+        return {
+          symbol,
+          price: currentPrice,
+          change: change,
+          changePercent: changePercent,
+          timestamp: Date.now()
+        };
+      } catch (error) {
+        console.error(`Finnhub API error for ${symbol}:`, error);
+        throw error;
+      }
+    }
+    
+    // Fallback to demo data if APIs fail
+    function generateDemoData(symbol) {
+      // Generate realistic-looking demo data
+      const basePrices = {
+        'AAPL': 185,
+        'GOOGL': 142,
+        'MSFT': 410,
+        'TSLA': 248,
+        'NVDA': 875
+      };
+      
+      const basePrice = basePrices[symbol] || 100;
+      const randomChange = (Math.random() - 0.5) * 0.05; // ±2.5% random change
+      const currentPrice = basePrice * (1 + randomChange);
+      const change = currentPrice - basePrice;
+      const changePercent = (change / basePrice) * 100;
+      
+      return {
+        symbol,
+        price: currentPrice,
+        change: change,
+        changePercent: changePercent,
+        timestamp: Date.now(),
+        isDemo: true
+      };
+    }
+    
+    // Main data fetching function
+    async function fetchTickerData(symbol) {
+      try {
+        // Try different APIs in order of preference
+        if (API_CONFIG.finnhub.apiKey && API_CONFIG.finnhub.apiKey !== 'your_finnhub_api_key_here') {
+          return await fetchWithFinnhub(symbol);
+        } else {
+          // Try Yahoo proxy (less reliable but no API key needed)
+          return await fetchWithYahooProxy(symbol);
+        }
+      } catch (error) {
+        console.warn(`All APIs failed for ${symbol}, using demo data`);
+        return generateDemoData(symbol);
+      }
+    }
+    
+    // UI update functions
+    function updateTickerDisplay(ticker, data) {
+      const tickerItems = document.querySelectorAll('.ticker-item');
+      
+      tickerItems.forEach(item => {
+        const symbolElement = item.querySelector('.ticker-symbol');
+        if (symbolElement && symbolElement.textContent === data.symbol) {
+          const priceElement = item.querySelector('.ticker-price');
+          const changeElement = item.querySelector('.ticker-change');
           
-          <div class="feature">
-            <div class="feature-icon">
-              <i class="fas fa-layer-group"></i>
-            </div>
-            <h3>Always-On-Top Display</h3>
-            <p>Stay productive while monitoring markets with a floating window that stays above all applications. Perfect for multi-monitor setups and active trading.</p>
-          </div>
+          if (priceElement && changeElement) {
+            priceElement.textContent = formatPrice(data.price);
+            changeElement.textContent = formatChange(data.change, data.changePercent);
+            changeElement.className = `ticker-change ${getChangeClass(data.change)}`;
+            
+            // Add subtle animation
+            item.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+              item.style.transform = 'scale(1)';
+            }, 200);
+          }
+        }
+      });
+    }
+    
+    // Main update function
+    async function updateAllTickers() {
+      showLoading(true);
+      updateApiStatus('Fetching data...');
+      
+      let successCount = 0;
+      let demoCount = 0;
+      
+      for (const ticker of TICKERS) {
+        try {
+          const data = await fetchTickerData(ticker.symbol);
+          updateTickerDisplay(ticker, data);
           
-          <div class="feature">
-            <div class="feature-icon">
-              <i class="fas fa-eye"></i>
-            </div>
-            <h3>Clean Mode (Ctrl+X)</h3>
-            <p>Instantly toggle to a distraction-free view showing only ticker data. Ideal for presentations, screenshots, or focused market analysis.</p>
-          </div
+          if (data.isDemo) {
+            demoCount++;
+          } else {
+            successCount++;
+          }
+          
+          // Small delay between requests to avoid rate limiting
+          await new Promise(resolve => setTimeout(resolve, 200));
+        } catch (error) {
+          console.error(`Failed to update ${ticker.symbol}:`, error);
+          
+          // Show error in the display
+          const tickerItems = document.querySelectorAll('.ticker-item');
+          tickerItems.forEach(item => {
+            const symbolElement = item.querySelector('.ticker-symbol');
+            if (symbolElement && symbolElement.textContent === ticker.symbol) {
+              const changeElement = item.querySelector('.ticker-change');
+              if (changeElement) {
+                changeElement.textContent = 'Error loading data';
+                changeElement.className = 'ticker-change error';
+              }
+            }
+          });
+        }
+      }
+      
+      showLoading(false);
+      updateLastUpdatedTime();
+      
+      // Update API status
+      if (successCount > 0) {
+        updateApiStatus(`Live data (${successCount}/${TICKERS.length})`);
+      } else if (demoCount > 0) {
+        updateApiStatus('Demo mode');
+      } else {
+        updateApiStatus('Connection error');
+      }
+    }
+    
+    // Initialize the demo
+    function initializeLiveDemo() {
+      console.log('Initializing live stock ticker demo...');
+      
+      // Initial update
+      updateAllTickers();
+      
+      // Set up periodic updates (every 30 seconds)
+      updateInterval = setInterval(updateAllTickers, 30000);
+      
+      // Add a disclaimer about API limitations
+      setTimeout(() => {
+        const container = document.getElementById('demo');
+        if (container && !document.getElementById('demo-disclaimer')) {
+          const disclaimer = document.createElement('div');
+          disclaimer.id = 'demo-disclaimer';
+          disclaimer.style.cssText = 'text-align: center; color: #666; font-size: 11px; margin-top: 10px; font-style: italic;';
+          disclaimer.innerHTML = '* Using free tier APIs with rate limits. Data may switch to demo mode if limits exceeded.';
+          container.appendChild(disclaimer);
+        }
+      }, 5000);
+    }
+    
+    // Cleanup function
+    function cleanup() {
+      if (updateInterval) {
+        clearInterval(updateInterval);
+      }
+    }
+    
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', initializeLiveDemo);
+    window.addEventListener('beforeunload', cleanup);
+    
+    // Handle visibility change (pause updates when tab not visible)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cleanup();
+      } else {
+        initializeLiveDemo();
+      }
+    });
+    
+    // Add click handler for manual refresh
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.demo-title') || e.target.closest('.live-indicator')) {
+        updateAllTickers();
+      }
+    });
+  </script>
+</body>
+</html>
