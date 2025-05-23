@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Stock Ticker Pro - Professional Real-Time Trading Dashboard</title>
+  <meta name="description" content="Stock Ticker Pro is a professional desktop application for real-time stock, crypto, forex, and commodity tracking with PyQt5. Download now for Windows.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #00ff88;
+      --primary-dark: #00cc6a;
+      --primary-light: #e6fff2;
+      --accent: #4361ee;
+      --accent-dark: #3a56d4;
+      --text: #1a1d29;
+      --text-light: #555b6e;
+      --background: #0f1419;
+      --card-bg: #1e2328;
+      --shadow-sm: rgba(0, 255, 136, 0.1);
+      --shadow: rgba(0, 255, 136, 0.2);
+      --shadow-lg: rgba(0, 255, 136, 0.3);
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --red: #ff4757;
+      --yellow: #ffa502;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    body {
+      background: var(--background);
+      color: white;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--background), #2d3748);
+      color: white;
+      padding: 100px 0 240px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="none" stroke="rgba(0,255,136,0.1)" stroke-width="1"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+    
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo span {
+      color: var(--primary);
+      margin-left: 2px;
+    }
+    
+    .logo i {
+      margin-right: 10px;
+      font-size: 22px;
+      color: var(--primary);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      opacity: 0.9;
+      font-size: 16px;
+    }
+    
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    
+    .hero {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      margin-top: 60px;
+    }
+    
+    h1 {
+      font-size: 52px;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      background: linear-gradient(135deg, white, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    h2 {
+      font-size: 22px;
+      margin-bottom: 40px;
+      font-weight: 400;
+      opacity: 0.9;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .main {
+      margin-top: -140px;
+      padding-bottom: 80px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      padding: 50px;
+      margin-bottom: 60px;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 255, 136, 0.1);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+      border-color: rgba(0, 255, 136, 0.3);
+    }
+    
+    .download-section {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .description {
+      font-size: 18px;
+      color: #a0a0a0;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+    
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: black;
+      box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 255, 136, 0.4);
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .btn i {
+      margin-right: 10px;
+    }
+    
+    .version {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .version-divider {
+      width: 4px;
+      height: 4px;
+      background: #888;
+      opacity: 0.5;
+      border-radius: 50%;
+    }
+    
+    .screenshot-container {
+      position: relative;
+      margin: 30px 0 50px;
+      text-align: center;
+    }
+    
+    .screenshot {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transition: var(--transition);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+    }
+    
+    .screenshot:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 255, 136, 0.2);
+    }
+    
+    .features-section {
+      padding: 20px 0 60px;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-title h3 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: white;
+    }
+    
+    .section-title p {
+      color: #a0a0a0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .feature {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+      border: 1px solid rgba(0, 255, 136, 0.1);
+    }
+    
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 255, 136, 0.2);
+      border-color: rgba(0, 255, 136, 0.3);
+    }
+    
+    .feature-icon {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      color: black;
+      font-size: 26px;
+      transform: rotate(5deg);
+      transition: var(--transition);
+    }
+    
+    .feature:hover .feature-icon {
+      transform: rotate(0deg) scale(1.05);
+    }
+    
+    .feature h3 {
+      margin-bottom: 15px;
+      font-size: 20px;
+      color: white;
+    }
+    
+    .feature p {
+      color: #a0a0a0;
+      line-height: 1.7;
+    }
+    
+    .ticker-demo {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      margin: 40px 0;
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      font-family: 'Consolas', 'Courier New', monospace;
+    }
+    
+    .ticker-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 15px;
+      margin: 8px 0;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .ticker-symbol {
+      font-weight: bold;
+      color: white;
+    }
+    
+    .ticker-price {
+      color: white;
+      font-size: 18px;
+    }
+    
+    .ticker-change {
+      font-weight: bold;
+    }
+    
+    .positive {
+      color: var(--primary);
+    }
+    
+    .negative {
+      color: var(--red);
+    }
+    
+    .requirements {
+      margin: 40px 0;
+      padding: 30px;
+      background: rgba(67, 97, 238, 0.1);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(67, 97, 238, 0.2);
+    }
+    
+    .requirements h3 {
+      margin-bottom: 20px;
+      font-size: 22px;
+      color: var(--accent);
+    }
+    
+    .requirements-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      list-style-type: none;
+    }
+    
+    .requirements-list li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      color: #a0a0a0;
+    }
+    
+    .requirements-list li i {
+      color: var(--primary);
+      margin-right: 10px;
+      font-size: 18px;
+    }
+    
+    .code-preview {
+      background: #1a1a1a;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      overflow: hidden;
+      text-align: left;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #e0e0e0;
+      max-height: 300px;
+      position: relative;
+      margin: 40px 0;
+      border: 1px solid rgba(0, 255, 136, 0.2);
+    }
+    
+    .code-preview pre {
+      margin: 0;
+      overflow: auto;
+      max-height: 260px;
+    }
+    
+    .code-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #333;
+    }
+    
+    .code-dots {
+      display: flex;
+      gap: 6px;
+      margin-right: 15px;
+    }
+    
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    
+    .dot-red {
+      background: #ff5f56;
+    }
+    
+    .dot-yellow {
+      background: #ffbd2e;
+    }
+    
+    .dot-green {
+      background: #27c93f;
+    }
+    
+    .code-title {
+      font-size: 13px;
+      color: #888;
+    }
+    
+    .code-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(transparent, #1a1a1a);
+      pointer-events: none;
+    }
+    
+    .cta-section {
+      text-align: center;
+      margin: 80px 0 40px;
+    }
+    
+    .cta-section h3 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .cta-section p {
+      margin-bottom: 30px;
+      color: #a0a0a0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    footer {
+      background: linear-gradient(135deg, #1a1d29, #2d3748);
+      color: white;
+      padding: 60px 0 30px;
+      position: relative;
+      border-top: 1px solid rgba(0, 255, 136, 0.1);
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-column h4 {
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: var(--primary);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 15px;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      color: white;
+      background: rgba(0, 255, 136, 0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+      color: black;
+      transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .copyright {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+    
+    /* Media Queries */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 0 30px;
+      }
+      
+      header {
+        padding: 80px 0 200px;
+      }
+      
+      h1 {
+        font-size: 42px;
+      }
+      
+      .card {
+        padding: 40px 30px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      header {
+        padding: 60px 0 180px;
+      }
+      
+      .hero {
+        margin-top: 40px;
+      }
+      
+      h1 {
+        font-size: 36px;
+      }
+      
+      h2 {
+        font-size: 18px;
+        padding: 0 15px;
+      }
+      
+      .main {
+        margin-top: -120px;
+      }
+      
+      .card {
+        padding: 30px 25px;
+        margin-bottom: 40px;
+        border-radius: 10px;
+      }
+      
+      .buttons {
+        flex-direction: column;
+        gap: 15px;
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .btn {
+        width: 100%;
+        padding: 14px 24px;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+      }
+      
+      .ticker-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 20px;
+      }
+      
+      header {
+        padding: 50px 0 160px;
+      }
+      
+      .logo {
+        font-size: 22px;
+      }
+      
+      h1 {
+        font-size: 28px;
+        padding: 0 5px;
+      }
+      
+      h2 {
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+      
+      .main {
+        margin-top: -100px;
+      }
+      
+      .card {
+        padding: 25px 15px;
+        border-radius: 8px;
+      }
+      
+      .feature {
+        padding: 30px 20px;
+      }
+      
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 22px;
+      }
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-slide-up {
+      animation: slideUp 0.8s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <a href="#" class="logo"><i class="fas fa-chart-line"></i>Stock Ticker <span>Pro</span></a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#demo">Live Demo</a>
+          <a href="#requirements">Requirements</a>
+          <a href="#download">Download</a>
+        </div>
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+      
+      <div class="hero">
+        <h1>Professional Trading Dashboard</h1>
+        <h2>Real-time stock, crypto, forex, and commodity tracking desktop application built with PyQt5. Perfect for traders, investors, and financial professionals who need always-on-top market data.</h2>
+      </div>
+    </div>
+  </header>
+  
+  <main class="main">
+    <div class="container">
+      <div class="card download-section" id="download">
+        <div class="screenshot-container">
+          <img src="https://via.placeholder.com/800x500/1e2328/00ff88?text=Stock+Ticker+Pro+Dashboard" alt="Stock Ticker Pro Screenshot" class="screenshot">
+        </div>
+        
+        <p class="description">
+          Stock Ticker Pro is a professional desktop application that provides real-time financial data tracking with an always-on-top overlay. 
+          Built with PyQt5 and powered by Yahoo Finance API, it supports stocks, cryptocurrencies, forex pairs, commodities, and ETFs with clean mode for distraction-free monitoring.
+        </p>
+        
+        <div class="buttons">
+          <a href="#" class="btn btn-primary">
+            <i class="fas fa-download"></i> Download for Windows
+          </a>
+          <a href="#demo" class="btn btn-secondary">
+            <i class="fas fa-play"></i> See Live Demo
+          </a>
+        </div>
+        
+        <div class="version">
+          <span>Version 2.2.0</span>
+          <span class="version-divider"></span>
+          <span>Windows 10/11</span>
+          <span class="version-divider"></span>
+          <span>Free & Open Source</span>
+        </div>
+        
+        <!-- Live Ticker Demo -->
+        <div class="ticker-demo" id="demo">
+          <h3 style="margin-bottom: 20px; color: var(--primary); text-align: center;">📊 Live Demo</h3>
+          <div class="ticker-item">
+            <div>
+              <span class="ticker-symbol">AAPL</span>
+              <span style="color: #888; margin-left: 10px;">Apple Inc.</span>
+            </div>
+            <div style="text-align: right;">
+              <div class="ticker-price">$185.42</div>
+              <div class="ticker-change positive">▲ +2.15 (+1.17%)</div>
+            </div>
+          </div>
+          <div class="ticker-item">
+            <div>
+              <span class="ticker-symbol">BTC-USD</span>
+              <span style="color: #888; margin-left: 10px;">Bitcoin</span>
+            </div>
+            <div style="text-align: right;">
+              <div class="ticker-price">$67,234.50</div>
+              <div class="ticker-change positive">▲ +1,455.20 (+2.21%)</div>
+            </div>
+          </div>
+          <div class="ticker-item">
+            <div>
+              <span class="ticker-symbol">GOOGL</span>
+              <span style="color: #888; margin-left: 10px;">Alphabet Inc.</span>
+            </div>
+            <div style="text-align: right;">
+              <div class="ticker-price">$142.78</div>
+              <div class="ticker-change negative">▼ -0.85 (-0.59%)</div>
+            </div>
+          </div>
+          <div class="ticker-item">
+            <div>
+              <span class="ticker-symbol">EURUSD=X</span>
+              <span style="color: #888; margin-left: 10px;">EUR/USD</span>
+            </div>
+            <div style="text-align: right;">
+              <div class="ticker-price">1.0845</div>
+              <div class="ticker-change positive">▲ +0.0023 (+0.21%)</div>
+            </div>
+          </div>
+          <div class="ticker-item">
+            <div>
+              <span class="ticker-symbol">GC=F</span>
+              <span style="color: #888; margin-left: 10px;">Gold Futures</span>
+            </div>
+            <div style="text-align: right;">
+              <div class="ticker-price">$2,165.40</div>
+              <div class="ticker-change positive">▲ +12.30 (+0.57%)</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="code-preview">
+          <div class="code-header">
+            <div class="code-dots">
+              <div class="dot dot-red"></div>
+              <div class="dot dot-yellow"></div>
+              <div class="dot dot-green"></div>
+            </div>
+            <div class="code-title">stock_ticker_pro.py</div>
+          </div>
+          <pre>from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
+from PyQt5.QtCore import Qt, QTimer, QThread, pyqtSignal
+import yfinance as yf
+
+class ProfessionalStockTicker(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.settings = AppSettings()
+        self.tickers = ["BTC-USD", "ETH-USD", "AAPL", "GOOGL", "NVDA"]
+        self.setup_ui()
+        self.setup_shortcuts()  # Ctrl+X for clean mode
+        
+    def toggle_clean_mode(self):
+        """Toggle between clean and full view"""
+        self.clean_mode = not self.clean_mode
+        if self.clean_mode:
+            self.header.setVisible(False)
+            self.control_panel.setVisible(False)
+            # Show only ticker data for distraction-free monitoring
+            
+    def fetch_data(self):
+        """Fetch real-time data using Yahoo Finance API"""
+        self.data_fetcher = DataFetcher(self.tickers)
+        self.data_fetcher.data_ready.connect(self.update_displays)
+        # More implementation...</pre>
+          <div class="code-fade"></div>
+        </div>
+        
+        <div class="requirements" id="requirements">
+          <h3>System Requirements</h3>
+          <ul class="requirements-list">
+            <li><i class="fas fa-check-circle"></i> Windows 10 or later (64-bit)</li>
+            <li><i class="fas fa-check-circle"></i> 2GB RAM minimum (4GB recommended)</li>
+            <li><i class="fas fa-check-circle"></i> 150MB free disk space</li>
+            <li><i class="fas fa-check-circle"></i> Internet connection for real-time data</li>
+            <li><i class="fas fa-check-circle"></i> No additional software required</li>
+            <li><i class="fas fa-check-circle"></i> Standalone executable - ready to run</li>
+          </ul>
+        </div>
+      </div>
+      
+      <section class="features-section" id="features">
+        <div class="section-title">
+          <h3>Professional Trading Features</h3>
+          <p>Everything you need for comprehensive market monitoring in a clean, efficient desktop application</p>
+        </div>
+        
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Real-Time Market Data</h3>
+            <p>Live prices for stocks, cryptocurrencies, forex pairs, commodities, and ETFs using Yahoo Finance API with automatic updates every 5-300 seconds.</p>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <h3>Always-On-Top Display</h3>
+            <p>Stay productive while monitoring markets with a floating window that stays above all applications. Perfect for multi-monitor setups and active trading.</p>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3>Clean Mode (Ctrl+X)</h3>
+            <p>Instantly toggle to a distraction-free view showing only ticker data. Ideal for presentations, screenshots, or focused market analysis.</p>
+          </div
