@@ -260,14 +260,13 @@
       border-radius: 50%;
     }
     
-    .ticker-demo {
+    .demo-section {
       background: var(--card-bg);
       border-radius: var(--border-radius);
       padding: 30px;
       margin: 40px 0;
       border: 1px solid rgba(0, 255, 136, 0.2);
       font-family: 'Consolas', 'Courier New', monospace;
-      position: relative;
     }
     
     .demo-header {
@@ -281,41 +280,6 @@
       color: var(--primary);
       font-size: 20px;
       font-weight: bold;
-    }
-    
-    .live-indicator {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: #888;
-    }
-    
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--primary);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-    
-    .loading-spinner {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border: 2px solid #444;
-      border-radius: 50%;
-      border-top-color: var(--primary);
-      animation: spin 1s ease-in-out infinite;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
     }
     
     .ticker-item {
@@ -366,29 +330,43 @@
       color: var(--red);
     }
     
-    .neutral {
-      color: #888;
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
     }
     
-    .error {
-      color: var(--yellow);
-      font-style: italic;
+    .feature-card {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 255, 136, 0.1);
+      transition: var(--transition);
     }
     
-    .last-updated {
-      text-align: center;
-      color: #666;
-      font-size: 11px;
-      margin-top: 15px;
-      font-style: italic;
+    .feature-card:hover {
+      border-color: rgba(0, 255, 136, 0.3);
+      transform: translateY(-3px);
     }
     
-    .api-status {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 10px;
-      color: #666;
+    .feature-icon {
+      font-size: 32px;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .feature-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: white;
+    }
+    
+    .feature-description {
+      color: #a0a0a0;
+      font-size: 14px;
+      line-height: 1.6;
     }
     
     /* Media Queries */
@@ -415,6 +393,18 @@
         width: 100%;
         text-align: left;
       }
+      
+      h1 {
+        font-size: 36px;
+      }
+      
+      h2 {
+        font-size: 18px;
+      }
+      
+      .card {
+        padding: 30px 20px;
+      }
     }
   </style>
 </head>
@@ -425,7 +415,7 @@
         <a href="#" class="logo"><i class="fas fa-chart-line"></i>Stock Ticker <span>Pro</span></a>
         <div class="nav-links">
           <a href="#features">Features</a>
-          <a href="#demo">Live Demo</a>
+          <a href="#demo">Preview</a>
           <a href="#requirements">Requirements</a>
           <a href="#download">Download</a>
         </div>
@@ -450,11 +440,11 @@
         </div>
         
         <div class="buttons">
-          <a href="#" class="btn btn-primary">
+          <a href="https://drive.google.com/file/d/1q9ib42ZzfZFgDPIrH7UupkEMCdGThI0Z/view?usp=sharing" class="btn btn-primary" target="_blank">
             <i class="fas fa-download"></i> Download for Windows
           </a>
           <a href="#demo" class="btn btn-secondary">
-            <i class="fas fa-play"></i> See Live Demo
+            <i class="fas fa-eye"></i> See Preview
           </a>
         </div>
         
@@ -466,28 +456,75 @@
           <span>Free & Open Source</span>
         </div>
         
-        <!-- Live Ticker Demo -->
-        <div class="ticker-demo" id="demo">
-          <div class="api-status" id="apiStatus">Loading...</div>
-          <div class="demo-header">
-            <h3 class="demo-title">📊 Live Market Data</h3>
-            <div class="live-indicator">
-              <span class="live-dot"></span>
-              <span>LIVE</span>
-              <span class="loading-spinner" id="loadingSpinner" style="display: none;"></span>
+        <!-- Features Section -->
+        <div id="features">
+          <h3 style="text-align: center; margin: 40px 0 30px; font-size: 28px;">Key Features</h3>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="feature-title">Real-Time Data</div>
+              <div class="feature-description">Live market data for stocks, crypto, forex, and commodities with automatic refresh intervals.</div>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-window-restore"></i>
+              </div>
+              <div class="feature-title">Always-On-Top</div>
+              <div class="feature-description">Keep your ticker visible above all other windows for constant market monitoring.</div>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-palette"></i>
+              </div>
+              <div class="feature-title">Clean Mode</div>
+              <div class="feature-description">Distraction-free minimal interface perfect for professional trading environments.</div>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-cogs"></i>
+              </div>
+              <div class="feature-title">Customizable</div>
+              <div class="feature-description">Add your own symbols, adjust refresh rates, and customize display preferences.</div>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-coins"></i>
+              </div>
+              <div class="feature-title">Multi-Asset Support</div>
+              <div class="feature-description">Track stocks, cryptocurrencies, forex pairs, commodities, and ETFs all in one place.</div>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-desktop"></i>
+              </div>
+              <div class="feature-title">Desktop Native</div>
+              <div class="feature-description">Built with PyQt5 for optimal performance and native Windows integration.</div>
             </div>
           </div>
+        </div>
+        
+        <!-- Demo Preview Section -->
+        <div class="demo-section" id="demo">
+          <div class="demo-header">
+            <h3 class="demo-title">📊 Application Preview</h3>
+          </div>
           
-          <div id="tickerContainer">
-            <!-- Tickers will be dynamically populated here -->
+          <div>
             <div class="ticker-item">
               <div class="ticker-info">
                 <span class="ticker-symbol">AAPL</span>
                 <span class="ticker-name">Apple Inc.</span>
               </div>
               <div class="ticker-data">
-                <div class="ticker-price">Loading...</div>
-                <div class="ticker-change neutral">Fetching data...</div>
+                <div class="ticker-price">$185.43</div>
+                <div class="ticker-change positive">▲ +2.15 (+1.17%)</div>
               </div>
             </div>
             
@@ -497,8 +534,8 @@
                 <span class="ticker-name">Alphabet Inc.</span>
               </div>
               <div class="ticker-data">
-                <div class="ticker-price">Loading...</div>
-                <div class="ticker-change neutral">Fetching data...</div>
+                <div class="ticker-price">$142.87</div>
+                <div class="ticker-change negative">▼ -1.23 (-0.85%)</div>
               </div>
             </div>
             
@@ -508,352 +545,54 @@
                 <span class="ticker-name">Microsoft Corporation</span>
               </div>
               <div class="ticker-data">
-                <div class="ticker-price">Loading...</div>
-                <div class="ticker-change neutral">Fetching data...</div>
+                <div class="ticker-price">$410.92</div>
+                <div class="ticker-change positive">▲ +5.67 (+1.40%)</div>
               </div>
             </div>
             
             <div class="ticker-item">
               <div class="ticker-info">
-                <span class="ticker-symbol">TSLA</span>
-                <span class="ticker-name">Tesla Inc.</span>
+                <span class="ticker-symbol">BTC-USD</span>
+                <span class="ticker-name">Bitcoin</span>
               </div>
               <div class="ticker-data">
-                <div class="ticker-price">Loading...</div>
-                <div class="ticker-change neutral">Fetching data...</div>
+                <div class="ticker-price">$42,150.00</div>
+                <div class="ticker-change positive">▲ +850.00 (+2.06%)</div>
               </div>
             </div>
             
             <div class="ticker-item">
               <div class="ticker-info">
-                <span class="ticker-symbol">NVDA</span>
-                <span class="ticker-name">NVIDIA Corporation</span>
+                <span class="ticker-symbol">EUR=X</span>
+                <span class="ticker-name">EUR/USD</span>
               </div>
               <div class="ticker-data">
-                <div class="ticker-price">Loading...</div>
-                <div class="ticker-change neutral">Fetching data...</div>
+                <div class="ticker-price">1.0845</div>
+                <div class="ticker-change negative">▼ -0.0012 (-0.11%)</div>
               </div>
             </div>
           </div>
           
-          <div class="last-updated" id="lastUpdated">
-            Connecting to live data feed...
+          <div style="text-align: center; color: #666; font-size: 12px; margin-top: 15px; font-style: italic;">
+            * This is a preview of the application interface with sample data
+          </div>
+        </div>
+        
+        <!-- Requirements Section -->
+        <div id="requirements" style="margin-top: 50px;">
+          <h3 style="text-align: center; margin-bottom: 20px; font-size: 24px;">System Requirements</h3>
+          <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 8px; color: #a0a0a0;">
+            <ul style="list-style: none; padding: 0;">
+              <li style="margin: 8px 0;"><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i>Windows 10 or Windows 11</li>
+              <li style="margin: 8px 0;"><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i>4 GB RAM minimum (8 GB recommended)</li>
+              <li style="margin: 8px 0;"><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i>50 MB free disk space</li>
+              <li style="margin: 8px 0;"><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i>Internet connection for real-time data</li>
+              <li style="margin: 8px 0;"><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i>No additional software required - ready to run!</li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </main>
-  
-  <script>
-    // Configuration
-    const API_CONFIG = {
-      // Free tier APIs (you'll need to sign up for API keys)
-      finnhub: {
-        baseUrl: 'https://finnhub.io/api/v1/quote',
-        apiKey: 'your_finnhub_api_key_here' // Free tier: 60 calls/minute
-      },
-      polygon: {
-        baseUrl: 'https://api.polygon.io/v2/aggs/ticker',
-        apiKey: 'your_polygon_api_key_here' // Free tier: 5 calls/minute
-      },
-      // Backup: Yahoo Finance proxy (no API key needed but less reliable)
-      yahooProxy: {
-        baseUrl: 'https://query1.finance.yahoo.com/v8/finance/chart'
-      }
-    };
-    
-    // Tickers to display
-    const TICKERS = [
-      { symbol: 'AAPL', name: 'Apple Inc.' },
-      { symbol: 'GOOGL', name: 'Alphabet Inc.' },
-      { symbol: 'MSFT', name: 'Microsoft Corporation' },
-      { symbol: 'TSLA', name: 'Tesla Inc.' },
-      { symbol: 'NVDA', name: 'NVIDIA Corporation' }
-    ];
-    
-    // Global state
-    let updateInterval;
-    let lastUpdateTime = null;
-    
-    // Utility functions
-    function formatPrice(price) {
-      return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }).format(price);
-    }
-    
-    function formatChange(change, changePercent) {
-      const arrow = change >= 0 ? '▲' : '▼';
-      const sign = change >= 0 ? '+' : '';
-      return `${arrow} ${sign}${change.toFixed(2)} (${sign}${changePercent.toFixed(2)}%)`;
-    }
-    
-    function getChangeClass(change) {
-      if (change > 0) return 'positive';
-      if (change < 0) return 'negative';
-      return 'neutral';
-    }
-    
-    function updateLastUpdatedTime() {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString('en-US', {
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      });
-      document.getElementById('lastUpdated').textContent = `Last updated: ${timeString}`;
-      lastUpdateTime = now;
-    }
-    
-    function showLoading(show = true) {
-      const spinner = document.getElementById('loadingSpinner');
-      if (spinner) {
-        spinner.style.display = show ? 'inline-block' : 'none';
-      }
-    }
-    
-    function updateApiStatus(status) {
-      const statusElement = document.getElementById('apiStatus');
-      if (statusElement) {
-        statusElement.textContent = status;
-      }
-    }
-    
-    // API functions
-    async function fetchWithYahooProxy(symbol) {
-      try {
-        const response = await fetch(`${API_CONFIG.yahooProxy.baseUrl}/${symbol}`, {
-          method: 'GET',
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-          }
-        });
-        
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
-        const data = await response.json();
-        const result = data.chart.result[0];
-        const quote = result.meta;
-        const prices = result.indicators.quote[0];
-        
-        const currentPrice = quote.regularMarketPrice;
-        const previousClose = quote.previousClose;
-        const change = currentPrice - previousClose;
-        const changePercent = (change / previousClose) * 100;
-        
-        return {
-          symbol,
-          price: currentPrice,
-          change: change,
-          changePercent: changePercent,
-          timestamp: Date.now()
-        };
-      } catch (error) {
-        console.error(`Yahoo API error for ${symbol}:`, error);
-        throw error;
-      }
-    }
-    
-    async function fetchWithFinnhub(symbol) {
-      try {
-        const response = await fetch(
-          `${API_CONFIG.finnhub.baseUrl}?symbol=${symbol}&token=${API_CONFIG.finnhub.apiKey}`
-        );
-        
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
-        const data = await response.json();
-        
-        const currentPrice = data.c; // current price
-        const change = data.d; // change
-        const changePercent = data.dp; // change percent
-        
-        return {
-          symbol,
-          price: currentPrice,
-          change: change,
-          changePercent: changePercent,
-          timestamp: Date.now()
-        };
-      } catch (error) {
-        console.error(`Finnhub API error for ${symbol}:`, error);
-        throw error;
-      }
-    }
-    
-    // Fallback to demo data if APIs fail
-    function generateDemoData(symbol) {
-      // Generate realistic-looking demo data
-      const basePrices = {
-        'AAPL': 185,
-        'GOOGL': 142,
-        'MSFT': 410,
-        'TSLA': 248,
-        'NVDA': 875
-      };
-      
-      const basePrice = basePrices[symbol] || 100;
-      const randomChange = (Math.random() - 0.5) * 0.05; // ±2.5% random change
-      const currentPrice = basePrice * (1 + randomChange);
-      const change = currentPrice - basePrice;
-      const changePercent = (change / basePrice) * 100;
-      
-      return {
-        symbol,
-        price: currentPrice,
-        change: change,
-        changePercent: changePercent,
-        timestamp: Date.now(),
-        isDemo: true
-      };
-    }
-    
-    // Main data fetching function
-    async function fetchTickerData(symbol) {
-      try {
-        // Try different APIs in order of preference
-        if (API_CONFIG.finnhub.apiKey && API_CONFIG.finnhub.apiKey !== 'your_finnhub_api_key_here') {
-          return await fetchWithFinnhub(symbol);
-        } else {
-          // Try Yahoo proxy (less reliable but no API key needed)
-          return await fetchWithYahooProxy(symbol);
-        }
-      } catch (error) {
-        console.warn(`All APIs failed for ${symbol}, using demo data`);
-        return generateDemoData(symbol);
-      }
-    }
-    
-    // UI update functions
-    function updateTickerDisplay(ticker, data) {
-      const tickerItems = document.querySelectorAll('.ticker-item');
-      
-      tickerItems.forEach(item => {
-        const symbolElement = item.querySelector('.ticker-symbol');
-        if (symbolElement && symbolElement.textContent === data.symbol) {
-          const priceElement = item.querySelector('.ticker-price');
-          const changeElement = item.querySelector('.ticker-change');
-          
-          if (priceElement && changeElement) {
-            priceElement.textContent = formatPrice(data.price);
-            changeElement.textContent = formatChange(data.change, data.changePercent);
-            changeElement.className = `ticker-change ${getChangeClass(data.change)}`;
-            
-            // Add subtle animation
-            item.style.transform = 'scale(1.02)';
-            setTimeout(() => {
-              item.style.transform = 'scale(1)';
-            }, 200);
-          }
-        }
-      });
-    }
-    
-    // Main update function
-    async function updateAllTickers() {
-      showLoading(true);
-      updateApiStatus('Fetching data...');
-      
-      let successCount = 0;
-      let demoCount = 0;
-      
-      for (const ticker of TICKERS) {
-        try {
-          const data = await fetchTickerData(ticker.symbol);
-          updateTickerDisplay(ticker, data);
-          
-          if (data.isDemo) {
-            demoCount++;
-          } else {
-            successCount++;
-          }
-          
-          // Small delay between requests to avoid rate limiting
-          await new Promise(resolve => setTimeout(resolve, 200));
-        } catch (error) {
-          console.error(`Failed to update ${ticker.symbol}:`, error);
-          
-          // Show error in the display
-          const tickerItems = document.querySelectorAll('.ticker-item');
-          tickerItems.forEach(item => {
-            const symbolElement = item.querySelector('.ticker-symbol');
-            if (symbolElement && symbolElement.textContent === ticker.symbol) {
-              const changeElement = item.querySelector('.ticker-change');
-              if (changeElement) {
-                changeElement.textContent = 'Error loading data';
-                changeElement.className = 'ticker-change error';
-              }
-            }
-          });
-        }
-      }
-      
-      showLoading(false);
-      updateLastUpdatedTime();
-      
-      // Update API status
-      if (successCount > 0) {
-        updateApiStatus(`Live data (${successCount}/${TICKERS.length})`);
-      } else if (demoCount > 0) {
-        updateApiStatus('Demo mode');
-      } else {
-        updateApiStatus('Connection error');
-      }
-    }
-    
-    // Initialize the demo
-    function initializeLiveDemo() {
-      console.log('Initializing live stock ticker demo...');
-      
-      // Initial update
-      updateAllTickers();
-      
-      // Set up periodic updates (every 30 seconds)
-      updateInterval = setInterval(updateAllTickers, 30000);
-      
-      // Add a disclaimer about API limitations
-      setTimeout(() => {
-        const container = document.getElementById('demo');
-        if (container && !document.getElementById('demo-disclaimer')) {
-          const disclaimer = document.createElement('div');
-          disclaimer.id = 'demo-disclaimer';
-          disclaimer.style.cssText = 'text-align: center; color: #666; font-size: 11px; margin-top: 10px; font-style: italic;';
-          disclaimer.innerHTML = '* Using free tier APIs with rate limits. Data may switch to demo mode if limits exceeded.';
-          container.appendChild(disclaimer);
-        }
-      }, 5000);
-    }
-    
-    // Cleanup function
-    function cleanup() {
-      if (updateInterval) {
-        clearInterval(updateInterval);
-      }
-    }
-    
-    // Event listeners
-    document.addEventListener('DOMContentLoaded', initializeLiveDemo);
-    window.addEventListener('beforeunload', cleanup);
-    
-    // Handle visibility change (pause updates when tab not visible)
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        cleanup();
-      } else {
-        initializeLiveDemo();
-      }
-    });
-    
-    // Add click handler for manual refresh
-    document.addEventListener('click', (e) => {
-      if (e.target.closest('.demo-title') || e.target.closest('.live-indicator')) {
-        updateAllTickers();
-      }
-    });
-  </script>
 </body>
 </html>
